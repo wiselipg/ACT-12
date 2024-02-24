@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>act 12 magic ball</title>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700|Montserrat:400,700' rel='stylesheet' type='text/css'>
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js'></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/jquery-ui.min.js"></script>
+    <style>
+        *{
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        }
+        body{
+            background-color: white;
+        }
+        .page {
+            width: 80%;
+            max-width: 960px;
+            margin: 0 auto;
+        }
+        .ball, .button {
+        margin: 0 auto;
+        }
+        .answer {
+        position:absolute;
+        width:9%;
+        top:50%;
+        left:50%;
+        margin-top:-60px;
+        margin-left:-85px;
+        font: 16px 'Open Sans', Helvetica, Arial, sans-serif;
+        color: #222;
+        text-transform: uppercase;
+        text-align: center;
+        text-shadow: 0 0 4px #ffffff;
+        }
+        h1{
+            text-align: center;
+            color: white;
+            background-color: pink;
+            padding: 30px;
+            margin-top: 10px;
+        }
+        img{
+            margin-left: 28%;
+            width: 41%;
+        }
+        #askmeanything{
+            font: 26px 'Montserrat', Helvetica, Arial, sans-serif;
+            border-radius: 5px;
+            border: none;
+            color: #f8f8f8;
+            background-color: #f1598c;
+            padding: 10px 75px;
+            display: block;
+            margin: 0 auto;  
+            transition-duration: 0.4s;    
+        }
+        #askmeanything:hover{
+            background-color: white;
+            color: black;
+            border: 2px solid;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        span{
+            color: black;
+        }
+        
+    </style>
+    
+</head>
+<body>
+    <h1>Pearl <span>Magic Ball</span> activity 12</h1>
+    <div class="ball">
+        <p class="answer" id="answer"> answer</p>
+    <img id="8ball" src="magic8ballQuestion.png" alt="magicball">
+    </div>
+    <br>
+    <div class="button">
+    <button id="askmeanything" onclick="askQuestion(), setTimeout(question, 500)"> CLICK TO ASK A QUESTION</button>
+    </div>
+    <script>
+
+        $(document).ready(function() {
+
+        var magic8Ball = {};
+        magic8Ball.listOfAnswers = ["No", "Yes", "I guess?",  "In your dreams", "keep trying", "hakdog"];
+
+        $("#answer").hide();
+
+        magic8Ball.askQuestion = function(question) {
+        $("#8ball").effect("shake");
+
+        $("#8ball").attr("src", "https://s3.amazonaws.com/media.skillcrush.com/skillcrush/wp-content/uploads/2016/09/magic8ballAnswer.png");
+
+        $("#answer").fadeIn(4000);
+
+        var randomNumber = Math.random();
+
+        var randomNumberForListOfAnswers = randomNumber * this.listOfAnswers.length;
+
+        var randomIndex = Math.floor(randomNumberForListOfAnswers);
+
+        var answer = this.listOfAnswers[randomIndex];
+
+        $("#answer").text(answer);
+        };
+
+        var onClick = function() {
+
+        $("#answer").hide();
+
+        $("#8ball").attr("src", "https://s3.amazonaws.com/media.skillcrush.com/skillcrush/wp-content/uploads/2016/09/magic8ballQuestion.png");
+
+
+        setTimeout(function(){
+            var question = prompt("ASK A QUESTION!");
+            magic8Ball.askQuestion(question);
+        }, 500);
+
+
+        };
+
+        $("#askmeanything").click(onClick);
+
+        });
+  </script>
+
+  </body>
+
+</html>
+    
+</body>
+</html> 
